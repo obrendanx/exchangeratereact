@@ -1,0 +1,19 @@
+.main_nav{
+    height:50px;
+    width:85%;
+    margin:auto;
+    border-bottom:solid 2px #8FB1E9;
+    .navbar_ul{
+        list-style-type:none;
+    }
+    .navbar_li{
+        margin-left:1.5%;
+    }
+    a{
+        display:inline-block;
+        height:50px;
+        width:75px;
+        line-height:50px;
+        text-decoration:none;
+    }
+}
