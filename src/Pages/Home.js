@@ -1,8 +1,12 @@
 import React from 'react'
+import Converter from '../Components/Converter'
 
 function Home() {
   return (
-    <div>Home</div>
+    <div>
+      Home
+      <Converter />
+    </div>
   )
 }
 
