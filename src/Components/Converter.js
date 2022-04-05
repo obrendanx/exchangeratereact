@@ -27,13 +27,21 @@ export default class Converter extends Component {
         <option>{(x)}</option>
     }
 
+    //currency rates for each code
     const data = Object.values(this.state.rates);
     const base = Object.values(this.state.base);
     const base_values = Object.entries(base);
-    const currency = ['AED','AFN', 'ALL', 'AMD', 'ANG', 'AOA', 'ARS', 'AUD', 'AWG', 'AZN', 'BAM', 'BBD', 'BDT', 'BGN', 'BHD', 'BIF', 'BMD', 'BND', 'BOB', 'BRL', 'BSD', 'BTC', 'BTN', 'BWP', 'BYN', 'BZD'];
+    const currency = [];
     console.log(data);
     console.log(base);
     console.log(base_values);
+
+    //mapping currency codes
+    base.map((items, index) => {
+      Object.keys(items).map((key) => {
+        items[key].length > 3 ? delete items[key] : currency.push(items[key]);
+      })
+    })
     
 
     return (
@@ -41,19 +49,13 @@ export default class Converter extends Component {
           <h1>Converter</h1>
           {this.state.loading ? <div>Loading ...</div> : <select></select>}
           <h1>{data[0]}</h1>
-          {base.map((items, index) => {
-            return (
-                <ul key={index}>
-                {Object.keys(items).map((key) => {
-                return (
-                    <div>
-                    <option key={key + index}>{items[key].toString()}</option>
-                    </div>
-                )
-                })} 
-                </ul>
-            )
-            })}
+          <h1>{currency[0]}</h1>
+          <select>
+            {currency.map(x => <option value={data[x]}>{x}</option>)}
+          </select>
+          <select>
+            {data.map(x => <option>{x}</option>)}
+          </select>
       </div>
     )
   }
