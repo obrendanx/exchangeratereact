@@ -3,29 +3,57 @@ import axios from 'axios'
 
 
 export default class Converter extends Component {
-    state = {
-        rates: [],
-        base: [],
-        loading: true
+  constructor(props) {
+    super(props);
+    this.state = {
+      rates: [],
+      base: [],
+      loading: true,
+      fromCurrState: 'USD',
+      toCurrState: '',
+      currAmountState: 100,
+      convertedCurr: ''
+    }
+    this.handleChange = this.handleChange.bind(this);
+    this.handleSubmit = this.handleSubmit.bind(this);
+  }
+
+    handleChange(e) {    this.setState({fromCurr: e.target.value, toCurr: e.target.value});  }
+    handleSubmit(e) {
+      alert(this.state.convertedCurr);
+      e.preventDefault();
     }
 
+
     async componentDidMount() {
+        //grab values from state
+        var fromCurr = this.state.fromCurrState;
+        var toCurr = this.state.toCurrState;
+        var currAmount = this.state.currAmountState;
+        //to grab currency values
         var url = 'https://api.exchangerate.host/latest';
         var response = await fetch(url);
         var data = await response.json();
+        //to grab currency names
         var url_two = 'https://api.exchangerate.host/symbols';
         var response_two = await fetch(url_two);
         var data_two = await response_two.json();
-        this.setState({rates: data.rates, loading: false, base: data_two.symbols});
+        //to convert the currency
+        var convert_url = 'https://api.exchangerate.host/convert?from=' + fromCurr + '&to=' + toCurr + '&amount=' + currAmount;
+        var convert = await fetch(convert_url);
+        var convert_data = await convert.json();
+        //updating state values with json values
+        this.setState({rates: data.rates, loading: false, base: data_two.symbols, convertedCurr: convert_data.result});
+        //testing to make sure values are being loaded
         console.log(data.rates)
         console.log(this.state.rates);
         console.log(this.state.base);
+        console.log(convert_data);
+
     }
 
   render() {
-    var makeItem = function(x) {
-        <option>{(x)}</option>
-    }
+    //to convert the currenc
 
     //currency rates for each code
     const data = Object.values(this.state.rates);
@@ -50,12 +78,20 @@ export default class Converter extends Component {
           {this.state.loading ? <div>Loading ...</div> : <select></select>}
           <h1>{data[0]}</h1>
           <h1>{currency[0]}</h1>
-          <select>
-            {currency.map(x => <option value={data[x]}>{x}</option>)}
+
+      <form onSubmit={this.handleSubmit}>
+            <select value={this.state.fromCurrState} onChange={this.handleChange}>           
+              {currency.map(x => <option value={x.value}>{x}</option>)}
+            </select>
+            <select value={this.state.toCurrState} onChange={this.handleChange}>
+            {currency.map((option) => (
+              <option value={option}>{option}</option>
+            ))}
           </select>
-          <select>
-            {data.map(x => <option>{x}</option>)}
-          </select>
+          <input type="submit" value="Submit" />
+      </form>
+      <h1>{this.state.toCurr}</h1>
+      <h1>{this.state.convertedCurr}</h1>
       </div>
     )
   }
