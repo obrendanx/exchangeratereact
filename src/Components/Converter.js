@@ -10,15 +10,19 @@ export default class Converter extends Component {
       base: [],
       loading: true,
       fromCurrState: 'USD',
-      toCurrState: '',
+      toCurrState: 'EUR',
       currAmountState: 100,
       convertedCurr: ''
     }
     this.handleChange = this.handleChange.bind(this);
+    this.handleChange = this.handleChangeTwo.bind(this)
     this.handleSubmit = this.handleSubmit.bind(this);
   }
 
-    handleChange(e) {    this.setState({fromCurr: e.target.value, toCurr: e.target.value});  }
+    handleChange(e) {    
+      this.setState({fromCurr: e.target.value, toCurr: e.target.value});  
+      console.log(this.state.toCurrState);
+    }
     handleSubmit(e) {
       alert(this.state.convertedCurr);
       e.preventDefault();
@@ -75,22 +79,23 @@ export default class Converter extends Component {
     return (
       <div>
           <h1>Converter</h1>
-          {this.state.loading ? <div>Loading ...</div> : <select></select>}
-          <h1>{data[0]}</h1>
-          <h1>{currency[0]}</h1>
 
       <form onSubmit={this.handleSubmit}>
-            <select value={this.state.fromCurrState} onChange={this.handleChange}>           
-              {currency.map(x => <option value={x.value}>{x}</option>)}
+            <select value="USD" onChange={this.handleChange}>           
+              {currency.map((option) => (
+                <option value={option.value}>{option}</option>
+              ))}
             </select>
-            <select value={this.state.toCurrState} onChange={this.handleChange}>
+
+            <select value="EUR" onChange={this.handleChange}>
             {currency.map((option) => (
-              <option value={option}>{option}</option>
+              <option value={option.value}>{option}</option>
             ))}
           </select>
           <input type="submit" value="Submit" />
       </form>
       <h1>{this.state.toCurr}</h1>
+      <h1>{this.state.fromCurr}</h1>
       <h1>{this.state.convertedCurr}</h1>
       </div>
     )
