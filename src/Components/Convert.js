@@ -5,13 +5,12 @@ export default class Converter extends Component {
     super(props);
     this.state = {
       base: [],
-      fromCurrState: '',
-      toCurrState: '',
+      fromCurrState: 'USD',
+      toCurrState: 'EUR',
       currAmountState: 100,
       convertedCurr: ''
     }
     this.handleChange = this.handleChange.bind(this);
-    this.handleChangeTwo = this.handleChange.bind(this);
     this.handleSubmit = this.handleSubmit.bind(this);
   }
 
@@ -59,23 +58,24 @@ export default class Converter extends Component {
   
 
     return (
-      <div>
-          <h1>Converter</h1>
+      <div className="currency_wrapper">
+      <h1 className="mainHead">Converter</h1>
 
-      <form onSubmit={this.handleSubmit}>
-              <select onChange={(event)=>this.handleChange(event, "fromCurrState")}>           
+      <form onSubmit={this.handleSubmit} className="converterForm">
+              <select value={this.state.fromCurrState} onChange={(event)=>this.handleChange(event, "fromCurrState")} className="currSelector">           
                 {currency.map((option) => (
                   <option value={option.value}>{option}</option>
                 ))}
               </select>
-              <select onChange={(event)=>this.handleChange(event, "toCurrState")}>
+              <input type="text" onChange={(event)=>this.handleChange(event, "currAmountState")} placeholder={this.state.currAmountState} className="amountInput"></input>
+              <select value={this.state.toCurrState} onChange={(event)=>this.handleChange(event, "toCurrState")} className="currSelector">
                 {currency.map((option) => (
                   <option value={option.value}>{option}</option>
                 ))}
               </select>
-          <input type="submit" value="Submit" />
+          <input type="submit" value="CONVERT" className="submitBtn" />
       </form>
-      {this.state.convertedCurr}
+      <h1 className="convertedHeader">{this.state.convertedCurr}</h1>
 
       </div>
     )

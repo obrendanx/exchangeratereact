@@ -1,0 +1,58 @@
+.currency_wrapper{
+    height:100vh;
+    width:100vw;
+    background: url(../images/space.gif);
+    background-repeat: no-repeat;
+    background-size: cover;
+    .currSelector{
+        height:10vh;
+        width:25vh;
+        color:#DC143C;
+        padding:10px;
+        text-align: center;
+    }
+    .currSelector option{
+        padding:10px;
+    }
+    .amountInput{
+        height:10vh;
+        width:20vw;
+        padding:10px;
+        color:#DC143C;
+        font-size:1.2em;
+        border:none;
+        margin:0 2vw 0 2vw;
+        text-align:center;
+    }
+    .convertedHeader{
+        height:7.5vh;
+        width:20vw;
+        background:#fff;
+        margin-top:2%;
+        margin-left:40vw;
+        text-align:center;
+        padding-top:10px;
+        position:relative;
+        top:30vh;
+        color:#DC143C;
+    }
+    .converterForm{
+        text-align:center;
+        position: relative;
+        top:25vh;
+    }
+    .submitBtn{
+        height:10vh;
+        width:5vw;
+        border:none;
+        background:#fff;
+        margin-left:2vw;
+        color:#DC143C;
+    }
+}
+
+.mainHead{
+    text-align: center;
+    padding-top:20px;
+    color:#DC143C;
+}

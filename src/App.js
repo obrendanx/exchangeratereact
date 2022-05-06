@@ -1,24 +1,26 @@
 import './Scss/App.scss';
-import {
-  BrowserRouter as Router,
-  Switch,
-  Route,
-} from "react-router-dom";
-import Nav from './Components/Nav.js';
-import Home from './Pages/Home.js';
-import Data from './Pages/Data.js';
+// import {
+//   BrowserRouter as Router,
+//   Switch,
+//   Route,
+// } from "react-router-dom";
+// import Nav from './Components/Nav.js';
+// import Home from './Pages/Home.js';
+// import Data from './Pages/Data.js';
+import Convert from './Components/Convert'
 
 function App() {
   return (
-    <Router>
+    // <Router>
     <div className="App">
-      <Nav />
+      {/* <Nav />
         <Switch>
           <Route path="/data" component={Data}/>
           <Route path="/" exact component={Home}/>
-        </Switch>
+        </Switch> */}
+        <Convert />
     </div>
-    </Router>
+    // </Router>
   );
 }
 
