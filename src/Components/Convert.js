@@ -12,6 +12,7 @@ export default class Converter extends Component {
     }
     this.handleChange = this.handleChange.bind(this);
     this.handleSubmit = this.handleSubmit.bind(this);
+    this.swapCurrency = this.swapCurrency.bind(this);
   }
 
     handleChange(event, field) {    
@@ -44,6 +45,14 @@ export default class Converter extends Component {
         //testing to make sure values are being loaded
     }
 
+     swapCurrency() {
+      var tempCurr = this.state.toCurrState;
+      var toCurr = this.state.fromCurrState;
+      var fromCurr = tempCurr;
+      this.setState({toCurrState: toCurr});
+      this.setState({fromCurrState: fromCurr});
+    }
+
   render() {
     //currency rates for each code
     const base = Object.values(this.state.base);
@@ -60,6 +69,8 @@ export default class Converter extends Component {
     return (
       <div className="currency_wrapper">
       <h1 className="mainHead">Converter</h1>
+
+      <button className="switchCurr" onClick={this.swapCurrency}>SWAP</button>
 
       <form onSubmit={this.handleSubmit} className="converterForm">
               <select value={this.state.fromCurrState} onChange={(event)=>this.handleChange(event, "fromCurrState")} className="currSelector">           
