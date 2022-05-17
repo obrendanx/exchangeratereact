@@ -35,6 +35,7 @@
         position:relative;
         top:30vh;
         color:#DC143C;
+        font-size:1.2em;
     }
     .converterForm{
         text-align:center;
@@ -55,4 +56,45 @@
     text-align: center;
     padding-top:20px;
     color:#DC143C;
+}
+
+.switchCurr{
+    border:none;
+    height:5vh;
+    width:10vw;
+    margin-left:45vw;
+    position: absolute;
+    top:20%;
+}
+
+@media only screen and (max-width: 915px){
+    .converterForm{
+        display:flex;
+        flex-direction: column;
+        align-items: center;
+        flex-wrap: wrap;
+        justify-content: center;
+        .submitBtn{
+            width:50vw;
+            margin:0;
+            margin-top:10px;
+        }
+        .amountInput{
+            width:50vw;
+            margin:0;
+            margin-top:10px;
+        }
+        .currSelector{
+            width:50vw;
+            margin-top:10px;
+        }
+    }
+    .convertedHeader{
+        width:50vw !important;
+        margin-left:25vw !important;
+    }
+    .switchCurr{
+        width:50vw;
+        margin-left:25vw;
+    }
 }

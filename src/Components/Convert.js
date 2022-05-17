@@ -84,7 +84,7 @@ export default class Converter extends Component {
                   <option value={option.value}>{option}</option>
                 ))}
               </select>
-          <input type="submit" value="CONVERT" className="submitBtn" />
+          <input type="submit" value=">" className="submitBtn" />
       </form>
       <h1 className="convertedHeader">{this.state.convertedCurr}</h1>
 
